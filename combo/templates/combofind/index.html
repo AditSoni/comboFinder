@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>COMBO Finder</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="jumbotron">
+		<h1>Welcome to combo finder</h1>
+		<h2>Upload your file to proceed.... </h2>	
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<input type="file" name="data" required accept=".csv" >
+			<p>Make sure your file is *.csv format</p>
+		
+			<a href="/media/data.csv" target="_blank" download>
+				click here to download sample data file
+			</a>
+			<br>
+			<br>
+			<label>Min Price </label><input required type="text" name="low">
+			<br>
+			<label>Max Price </label><input required type="text" name="high">
+			<br>
+			<label>Your Email </label><input required type="email" name="email">
+			<br>
+			<button type="submit" >Go!</button>
+		</form>	
+		{%if result %}
+			{%if result == 99 %}
+				<h4> Sorry no combos Possible!!! </h4>
+			{%else%}	
+				<h3>Check your email! </h3>
+				<p>We have sent you an email containing the details of combos</p>
+			{%endif%}
+		{%endif%}
+		</div>
+		
+	</div>
+</body>
+</html>
